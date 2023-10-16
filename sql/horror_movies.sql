@@ -1,9 +1,6 @@
 -- Add your SQL here
-SELECT Movie_ID, Movie_Title, Rating
-FROM (
-    SELECT id as Movie_ID, name as Movie_Title, imdb_rating as Rating,
-           ROW_NUMBER() OVER (ORDER BY imdb_rating DESC) as rn
-    FROM movies
-    WHERE genre = 'Horror' AND release_year <= 1985
-) ranked
-WHERE rn <= 3;
+SELECT id AS Movie_ID, name AS Movie_Title, imdb_rating AS Rating
+FROM movies
+WHERE genre = 'horror' AND year <= 1985
+ORDER BY imdb_rating DESC
+LIMIT 3;
